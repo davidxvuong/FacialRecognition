@@ -6,5 +6,18 @@
 	<body>
 		<input type="file" name="fileToUpload" id="fileToUpload"/>
 		<input type="button" value="Upload" onclick="uploadFile()"/>
+		<input type="button" value="Webcam Access" onclick="initializeWebcam()"/>
+		<br/>
+		<div class = "camera">
+			<video id = "video">Video stream is not available.</video>
+			<input type="button" value="Start Capture" id = "startbutton"/>
+			
+		</div>
+		
+		<canvas id="canvas">
+		</canvas>
+		<div class="output">
+			<img id="photo" alt="The screen capture will appear in this box.">
+		</div>
 	</body>
 </html>
