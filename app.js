@@ -30,7 +30,7 @@ function uploadComplete(event) {
 	$.get (
 		"http://api.skybiometry.com/fc/faces/detect.json?api_key=" + API_KEY + "&api_secret=" + API_SECRET + "&urls=http://davidvuong.ca/Upload/uploads/" + event.target.responseText + "&attributes=all", function(data) {
 			console.log(data);
-		});
+	});
 }
 
 function uploadFailed(event) {
@@ -109,7 +109,16 @@ function takePicture() {
     
 		var data = canvas.toDataURL('image/png');
 		photo.setAttribute('src', data);
-		console.log(data);
+		console.log(data.toString());
+		
+		var formData = new FormData();
+		formData.append("imgData", data);
+		var phpServer = new XMLHttpRequest();
+		phpServer.addEventListener("load", uploadComplete, false);
+		phpServer.addEventListener("error", uploadFailed, false);
+		phpServer.addEventListener("abort", uploadCancelled, false);
+		phpServer.open("POST", "newfile.php");
+		phpServer.send(formData);
     } 
 	else {
       clearPhoto();
