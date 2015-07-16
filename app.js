@@ -178,9 +178,7 @@ function recognize() {
 }
 
 function recognizeUploadComplete(event) {
-	console.log(event.target.responseText);
-	name = prompt("Enter your name: ");
-	$.get("http://api.skybiometry.com/fc/faces/recognize.json?api_key=" + API_KEY + "&api_secret=" + API_SECRET + "&urls=http://davidvuong.ca/Upload/uploads/" + event.target.responseText + "&uids=" + name + "@BattleHack", recognizeCallback);
+	$.get("http://api.skybiometry.com/fc/faces/recognize.json?api_key=" + API_KEY + "&api_secret=" + API_SECRET + "&urls=http://davidvuong.ca/Upload/uploads/" + event.target.responseText + "&uids=all@BattleHack", recognizeCallback);
 }
 
 function recognizeCallback(data) {
